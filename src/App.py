@@ -5,11 +5,13 @@ import base64
 from PIL import Image
 from transformers import ConvNextFeatureExtractor, ConvNextForImageClassification
 from torch import no_grad
+from flask_cors import CORS
 import logging
 feature_extractor = ConvNextFeatureExtractor.from_pretrained("facebook/convnext-tiny-224")
 model = ConvNextForImageClassification.from_pretrained("facebook/convnext-tiny-224")
 
 app = Flask(__name__)
+CORS(app)
 PUBLIC = 'public'
 
 @app.route(f'/{PUBLIC}/isAlive')
